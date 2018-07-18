@@ -2,6 +2,7 @@
 
 from __future__ import division
 from flask import Flask, jsonify, abort, request, make_response, url_for
+from ast import literal_eval as make_tuple
 from copy import deepcopy
 import json
 import pickle
@@ -293,6 +294,7 @@ def create_task_mlpc_train():
     if not (alpha):
         alpha=1e-5
     hidden_layer_sizes = parameters.get("hidden_layer_sizes", None)
+    hidden_layer_sizes = make_tuple(hidden_layer_sizes)
     if not (hidden_layer_sizes):
         hidden_layer_sizes=(5, 2)
     random_state = parameters.get("random_state", None)
@@ -391,6 +393,7 @@ def create_task_mlpr_train():
     if not (alpha):
         alpha=0.0001
     hidden_layer_sizes = parameters.get("hidden_layer_sizes", None)
+    hidden_layer_sizes = make_tuple(hidden_layer_sizes)
     if not (hidden_layer_sizes):
         hidden_layer_sizes=(100, )
     random_state = parameters.get("random_state", None)
